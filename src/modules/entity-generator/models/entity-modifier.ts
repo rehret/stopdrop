@@ -4,8 +4,8 @@ import { WeightedEntity } from "../../weighted-roller";
 export class EntityModifier<TValue = any> extends WeightedEntity {
     public Modification: EntityAttribute<TValue>;
 
-    constructor(weight: number, name: string, value: TValue, prefix: string = '', suffix: string = '') {
+    constructor(weight: number, value: TValue, prefix: string = '', suffix: string = '') {
         super(weight);
-        this.Modification = new EntityAttribute(name, value, prefix, suffix);
+        this.Modification = new EntityAttribute(value, prefix, suffix);
     }
 }
