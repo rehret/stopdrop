@@ -21,6 +21,17 @@ export class EntityDefinition<TAttrValue = any, TModValue = any> extends Weighte
         this.Modifiers = modifiers;
     }
 
+    /**
+     * Builds the name of the entity.
+     *
+     * This involves prefixing the name with attribute and modifier prefixes as
+     * well as postfixing the name with attribute and modifier suffixes.
+     *
+     * Modifier prefixes and suffixes are used before those from the attribute.
+     *
+     * @param maxPrefixes Maximum number of prefixes to use. Use -1 for unlimited.
+     * @param maxSuffixes Maximum number of suffixes to use. Use -1 for unlimited.
+     */
     public toString(maxPrefixes: number = -1, maxSuffixes: number = -1): string {
         const prefixes: string[] = [];
         const suffixes: string[] = [];
