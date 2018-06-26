@@ -15,13 +15,16 @@ export class EntityGenerator<TAttrValue = any, TModValue = any> {
         const entityArchetype = WeightedRoller.GetItem(this.ItemDefinitions);
         const entity = new EntityDefinition<TAttrValue, TModValue>(entityArchetype.Weight, entityArchetype.Name, entityArchetype.Attribute, []);
 
-        const numberOfModifiers = Math.floor(Math.random() * ((maxModifiers < 0 ? entityArchetype.Modifiers.length : maxModifiers) + 1));
+        const numberOfModifiers = Math.max(WeightedRoller.GetItem(entityArchetype.ModifierChances).ModifierCount, maxModifiers);
 
         for (let i = 0; i < numberOfModifiers; i++) {
-            const modifier = WeightedRoller.GetItem(entityArchetype.Modifiers);
-            if (entity.Modifiers.indexOf(modifier) === -1) {
-                entity.Modifiers.push(modifier);
+            let modifier = WeightedRoller.GetItem(entityArchetype.Modifiers);
+
+            while (entity.Modifiers.includes(modifier)) {
+                modifier = WeightedRoller.GetItem(entityArchetype.Modifiers);
             }
+
+            entity.Modifiers.push(modifier);
         }
 
         return entity;
