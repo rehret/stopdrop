@@ -1,0 +1,21 @@
+{
+  "name": "item-roller",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "build:dev": "yarn build --sourceMap",
+    "prepublishOnly": "yarn clean && yarn build",
+    "clean": "n-clean dist"
+  },
+  "devDependencies": {
+    "@types/core-js": "^2.5.0",
+    "@types/node": "^10.3.6",
+    "npm-build-tools": "^2.2.5",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "core-js": "^2.5.7"
+  }
+}
